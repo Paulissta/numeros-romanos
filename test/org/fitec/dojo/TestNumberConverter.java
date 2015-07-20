@@ -21,127 +21,72 @@ public class TestNumberConverter {
     }
 
     @Test
-    public void testOneToRoman() {
+    public void testOne() {
         createDecimalToRomanTest(1, "I");
     }
 
     @Test
-    public void testFiveToRoman() {
+    public void testFive() {
         createDecimalToRomanTest(5, "V");
     }
 
     @Test
-    public void testTenToRoman() {
+    public void testTen() {
         createDecimalToRomanTest(10, "X");
     }
 
     @Test
-    public void testFiftyToRoman() {
+    public void testFifty() {
         createDecimalToRomanTest(50, "L");
     }
 
     @Test
-    public void testHundredToRoman() {
+    public void testHundred() {
         createDecimalToRomanTest(100, "C");
     }
 
     @Test
-    public void testFiveHundredToRoman() {
+    public void testFiveHundred() {
         createDecimalToRomanTest(500, "D");
     }
 
     @Test
-    public void testThousandToRoman() {
+    public void testThousand() {
         createDecimalToRomanTest(1000, "M");
     }
     
     @Test(expected=RuntimeException.class)
-    public void testInvalidDecimalToRoman() {
+    public void testInvalidDecimal() {
         createDecimalToRomanTest(-1, null);
-    }
-
-    @Test
-    public void testIToDecimal() {
-        createRomanToDecimalTest("I", 1);
-    }
-
-    @Test
-    public void testVToDecimal() {
-        createRomanToDecimalTest("V", 5);
-    }
-
-    @Test
-    public void testXToRoman() {
-        createRomanToDecimalTest("X", 10);
-    }
-
-    @Test
-    public void testLToDecimal() {
-        createRomanToDecimalTest("L", 50);
-    }
-
-    @Test
-    public void testCToDecimal() {
-        createRomanToDecimalTest("C", 100);
-    }
-
-    @Test
-    public void testDToDecimal() {
-        createRomanToDecimalTest("D", 500);
-    }
-
-    @Test
-    public void testMToDecimal() {
-        createRomanToDecimalTest("M", 1000);
     }
     
     @Test(expected=RuntimeException.class)
-    public void testInvalidRomanToDecimal() {
+    public void testEmptyRoman() {
         createRomanToDecimalTest("", null);
     }
     
     @Test
-    public void testThreeToRoman() {
+    public void testThree() {
         createDecimalToRomanTest(3, "III");
     }
     
     @Test
-    public void testIIIToDecimal() {
-        createRomanToDecimalTest("III", 3);
-    }
-    
-    @Test
-    public void testHundredFiftyToRoman() {
+    public void testHundredFifty() {
         createDecimalToRomanTest(150, "CL");
     }
     
     @Test
-    public void testCLToDecimal() {
-        createRomanToDecimalTest("CL", 150);
-    }
-    
-    @Test
-    public void testFourToRoman() {
+    public void testFour() {
         createDecimalToRomanTest(4, "IV");
     }
     
     @Test
-    public void testFortyFourToRoman() {
+    public void testFortyFour() {
         createDecimalToRomanTest(44, "XLIV");
     }
     
-    @Test
-    public void testIVToDecimal() {
-        createRomanToDecimalTest("IV", 4);
-    }
-    
-    @Test
-    public void testXLIVToDecimal() {
-        createRomanToDecimalTest("XLIV", 44);
-    }
-    
     @Test(expected=RuntimeException.class)
-    public void testInvalidRomanWithFourSequence() {
+    public void testRomanWithFourSequence() {
         createRomanToDecimalTest("IIII", null);
     }
     
@@ -149,6 +94,10 @@ public class TestNumberConverter {
         String roman = converter.decimalToRoman(pDecimal);
         
         assertEquals(pExpectedRoman, roman);
+        
+        if (pExpectedRoman != null) {
+            createRomanToDecimalTest(pExpectedRoman, pDecimal);
+        }
     }
     
     private void createRomanToDecimalTest(String pRoman, Integer pExpectedDecimal) {
