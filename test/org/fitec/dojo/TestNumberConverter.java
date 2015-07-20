@@ -140,6 +140,11 @@ public class TestNumberConverter {
         createRomanToDecimalTest("XLIV", 44);
     }
     
+    @Test(expected=RuntimeException.class)
+    public void testInvalidRomanWithFourSequence() {
+        createRomanToDecimalTest("IIII", null);
+    }
+    
     private void createDecimalToRomanTest(Integer pDecimal, String pExpectedRoman) {
         String roman = converter.decimalToRoman(pDecimal);
         
